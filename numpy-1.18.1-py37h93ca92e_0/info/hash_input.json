@@ -1,0 +1,10 @@
+{
+  "vc": "14",
+  "mkl": "2019",
+  "fortran_compiler_version": "2019.0.0",
+  "fortran_compiler": "intel-fortran",
+  "numpy": "1.11",
+  "blas_impl": "mkl",
+  "c_compiler": "vs2017",
+  "numpy_version": "1.18.1"
+}

@@ -1,0 +1,17 @@
+commit b0060bc8000e99883cbaf4617c03a4693c1dead6
+Author: Jonathan Helmus <jjhelmus@gmail.com>
+Date:   Thu Jan 16 11:20:56 2020 -0600
+
+    add tests from conda-forge recipe
+
+commit 5509282f54db1218f9bdb1f85493c01595c80b4b
+Author: Mike Sarahan <msarahan@gmail.com>
+Date:   Wed Sep 25 22:21:58 2019 -0500
+
+    add numpy metapackage recipe
+
+commit f8b9d68b6ea9db8df6351b9c91e35c60ccae4646
+Author: Mike Sarahan <msarahan@gmail.com>
+Date:   Wed Sep 25 12:08:22 2019 -0500
+
+    Initial commit

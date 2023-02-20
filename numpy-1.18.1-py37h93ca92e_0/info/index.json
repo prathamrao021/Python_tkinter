@@ -1,0 +1,23 @@
+{
+  "arch": "x86_64",
+  "build": "py37h93ca92e_0",
+  "build_number": 0,
+  "depends": [
+    "blas 1.0 mkl",
+    "icc_rt >=2019.0.0",
+    "mkl >=2019.4,<2020.0a0",
+    "mkl-service >=2,<3.0a0",
+    "mkl_fft",
+    "mkl_random",
+    "numpy-base 1.18.1.*",
+    "python >=3.7,<3.8.0a0",
+    "vc >=14.1,<15.0a0",
+    "vs2015_runtime >=14.16.27012,<15.0a0"
+  ],
+  "license": "BSD 3-Clause",
+  "name": "numpy",
+  "platform": "win",
+  "subdir": "win-64",
+  "timestamp": 1579206028835,
+  "version": "1.18.1"
+}

@@ -1,0 +1,65 @@
+# This file created by conda-build 3.17.8
+# meta.yaml template originally from:
+# C:\ci\containers\00002bcqaa7\tmp\build\80754af9\rsync-recipes\numpy-1.18.1-python_3.7-c_compiler_vs2017-vc_14-fortran_compiler_version_2019.0.0-on-winbuilder, last modified Thu Jan 16 14:01:16 2020
+# ------------------------------------------------
+
+package:
+    name: numpy
+    version: 1.18.1
+build:
+    string: py37h93ca92e_0
+requirements:
+    build:
+        - intel-fortran_win-64 2019.0.0 hf4e3f46_1
+        - vs2017_win-64 19.16.27032.1 hb8d98e7_1
+        - vswhere 2.7.1 h21ff451_0
+    host:
+        - blas 1.0 mkl
+        - ca-certificates 2019.11.27 0
+        - icc_rt 2019.0.0 h0cc432a_1
+        - intel-openmp 2019.4 245
+        - mkl 2019.4 245
+        - mkl-devel 2019.4 245
+        - mkl-include 2019.4 245
+        - openssl 1.1.1d he774522_3
+        - python 3.7.6 h60c2a47_2
+        - sqlite 3.30.1 he774522_0
+        - vc 14.1 h0510ff6_4
+        - vs2015_runtime 14.16.27012 hf0eaf9b_1
+    run:
+        - blas 1.0 mkl
+        - icc_rt >=2019.0.0
+        - mkl >=2019.4,<2020.0a0
+        - mkl-service >=2,<3.0a0
+        - mkl_fft
+        - mkl_random
+        - numpy-base 1.18.1.*
+        - python >=3.7,<3.8.0a0
+        - vc >=14.1,<15.0a0
+        - vs2015_runtime >=14.16.27012,<15.0a0
+test:
+    commands:
+        - f2py -h
+        - python -c "import numpy; numpy.show_config()"
+    imports:
+        - numpy
+        - numpy.linalg.lapack_lite
+    requires:
+        - intel-fortran_win-64 2019.0.0.*
+        - pytest
+        - vs2017_win-64
+    script: numpy_test.py
+about:
+    description: 'NumPy is the fundamental package needed for scientific computing
+        with Python.
+
+        '
+    dev_source_url: https://github.com/numpy/numpy/tree/master/doc
+    dev_url: https://github.com/numpy/numpy
+    doc_url: https://docs.scipy.org/doc/numpy-1.18.1/reference/
+    home: http://numpy.scipy.org/
+    license: BSD 3-Clause
+    summary: Array processing for numbers, strings, records, and objects.
+extra:
+    copy_test_source_files: true
+    final: true
