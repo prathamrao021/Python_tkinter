@@ -1,4 +1,3 @@
-
 from tkinter import *
 from tkinter import ttk
 import tkinter as tk
@@ -24,7 +23,7 @@ gauge_label = []
 main_arr = []
 conflict_arr = [['1','2'],['3','4']]
 gauge_ident = ['0']*6
-conflict = False
+
 '''functions'''
 def raise_frame(frame):
     frame.tkraise()
@@ -157,7 +156,11 @@ select6 = Label(table_frame, text="Select the gauge:")
 cbtn_6 = Button(table_frame)
 cbtn1_6 = Button(table_frame)
 
-
+'''functions'''
+select_label = [select1, select2, select3, select4, select5, select6]
+con_btn = [cbtn_1, cbtn_2, cbtn_3, cbtn_4, cbtn_5, cbtn_6]
+con_btn1 = [cbtn1_1, cbtn1_2, cbtn1_3, cbtn1_4, cbtn1_5, cbtn1_6]
+gauge_label = [gauge1, gauge2, gauge3, gauge4, gauge5, gauge6]
 def change():
     file = open('traildata.txt','r')
     data = file.read()
@@ -173,11 +176,11 @@ def change():
             e_arr.append(e)
             f_arr.append(f)
     
-    gauge_label = [gauge1, gauge2, gauge3, gauge4, gauge5, gauge6]
+    # gauge_label = [gauge1, gauge2, gauge3, gauge4, gauge5, gauge6]
     main_arr = [a_arr, b_arr, c_arr, d_arr, e_arr, f_arr]
-    select_label = [select1, select2, select3, select4, select5, select6]
-    con_btn = [cbtn_1, cbtn_2, cbtn_3, cbtn_4, cbtn_5, cbtn_6]
-    con_btn1 = [cbtn1_1, cbtn1_2, cbtn1_3, cbtn1_4, cbtn1_5, cbtn1_6]
+    # select_label = [select1, select2, select3, select4, select5, select6]
+    # con_btn = [cbtn_1, cbtn_2, cbtn_3, cbtn_4, cbtn_5, cbtn_6]
+    # con_btn1 = [cbtn1_1, cbtn1_2, cbtn1_3, cbtn1_4, cbtn1_5, cbtn1_6]
     conf_num = [0]*6
     for j in range(0,6):
         label = Label(table_frame, text="Select the gauge:")
@@ -190,14 +193,19 @@ def change():
         
     for i in range(0, len(gauge_label)):
         
-        gauge_label[i].config(text=main_arr[i][-2])
-        if (float(main_arr[i][-2]) >= 1 and float(main_arr[i][-2]) <= 1.3):
+        if (gauge_ident[i] == '0'):
+            gauge_label[i].config(text = "Sync Error")
+        else:
+            gauge_label[i].config(text = gauge_ident[i])
+            
+        #gauge_label[i].config(text=main_arr[i][-2])
+        if (float(main_arr[i][-2]) >= 1 and float(main_arr[i][-2]) <= 1.3 and gauge_ident[i] == '0'):
             conf_num[i] = 1
+        # to write more code to set values in gauge_ident[] in elif
         else:
             conf_num[i] = 0
         
         if(conf_num[i]):
-            gauge_ident[i] = 'Select'
             # Select_label = Label(table_frame, text="Select the gauge:")
             # Select_label.grid(row=i+1, column=3)
             # con_btn = Button(table_frame, text=conflict_arr[0][0], command=lambda:grid_remove())
@@ -205,10 +213,11 @@ def change():
             # con_btn1 = Button(table_frame, text=conflict_arr[0][1], command=lambda:grid_remove())
             # con_btn1.grid(row=i+1, column=5)
             select_label[i].grid(row=i+1, column=3)
-            con_btn[i].config(text=conflict_arr[0][0])
+            con_btn[i].config(text=conflict_arr[conf_num[i]-1][0], command=lambda:setgaugevalue(i,conf_num[i]-1,0))
             con_btn[i].grid(row=i+1, column=4)
-            con_btn1[i].config(text=conflict_arr[0][1])
+            con_btn1[i].config(text=conflict_arr[conf_num[i]-1][1], command=lambda:setgaugevalue(i,conf_num[i]-1,1))
             con_btn1[i].grid(row=i+1, column=5)
+            
     for i in range(0,6):
         if (conf_num[i]==0):
             print(i, conf_num)
@@ -220,8 +229,17 @@ def change():
     file.close()
     root.after(1000, change)
 
+def setgaugevalue(ch, num1, num2):
+    gauge_ident[ch] = conflict_arr[num1][num2]
+    # gauge_label[i].config(text = )
+    print(gauge_ident)
+    
+    select_label[ch].grid_remove()
+    con_btn[ch].grid_remove()
+    con_btn1[ch].grid_remove()
+
 raise_frame(f1)
-# ani = animation.FuncAnimation(figure, animate, interval=1000)
+
 change()
 root.mainloop()
 
